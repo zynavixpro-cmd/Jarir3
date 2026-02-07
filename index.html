@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدفع - جرير</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --jarir-red: #E30613;
+            --input-bg: #F0F2F5;
+        }
+        body { font-family: 'Cairo', sans-serif; background-color: #F8F9FA; }
+        
+        .card-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .form-input {
+            width: 100%;
+            background-color: var(--input-bg);
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 13px;
+            text-align: right;
+            outline: none;
+        }
+
+        .payment-method {
+            border: 1px solid #E5E7EB;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .radio-blue {
+            width: 20px;
+            height: 20px;
+            border: 5px solid #0055FF;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="max-w-md mx-auto min-h-screen flex flex-col bg-[#F3F5F7]">
+
+    <header class="bg-white p-4 flex justify-between items-center border-b">
+        <i class="fa-solid fa-chevron-left text-gray-400"></i>
+        <span class="font-bold text-gray-700">العودة</span>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Jarir_Bookstore_Logo.svg" class="h-6" alt="Jarir">
+    </header>
+
+    <main class="p-4">
+        <div class="flex items-center gap-2 mb-6 justify-end">
+            <span class="font-bold text-gray-800 text-lg">الدفع</span>
+            <div class="bg-slate-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">2</div>
+        </div>
+
+        <div class="card-container p-6">
+            <div class="payment-method mb-6">
+                <div class="radio-blue"></div>
+                <div class="flex flex-col items-end gap-1">
+                    <span class="text-sm font-bold text-gray-700">الدفع بالبطاقة الائتمانية</span>
+                    <div class="flex gap-2">
+                        <img src="https://img.icons8.com/color/48/visa.png" class="h-5">
+                        <img src="https://img.icons8.com/color/48/mastercard.png" class="h-5">
+                        <img src="https://img.icons8.com/color/48/amex.png" class="h-5">
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <div class="flex gap-2">
+                    <div class="w-1/3">
+                        <label class="block text-[10px] text-gray-400 mb-1">تاريخ الانتهاء</label>
+                        <input type="text" placeholder="تاريخ الانتهاء" class="form-input">
+                    </div>
+                    <div class="w-2/3">
+                        <label class="block text-[10px] text-gray-400 mb-1">رقم البطاقة</label>
+                        <input type="text" placeholder="رقم البطاقة" class="form-input">
+                    </div>
+                </div>
+
+                <div class="flex gap-2">
+                    <div class="w-1/3">
+                        <label class="block text-[10px] text-gray-400 mb-1 text-center">(CVV) رمز التحقق</label>
+                        <input type="text" placeholder="رمز التحقق" class="form-input">
+                    </div>
+                    <div class="w-2/3">
+                        <label class="block text-[10px] text-gray-400 mb-1">اسم حامل البطاقة</label>
+                        <input type="text" placeholder="اسم حامل البطاقة" class="form-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-3 mt-6">
+                <span class="text-xs text-gray-500 font-bold">احفظ بيانات البطاقة للاستخدام لاحقاً</span>
+                <input type="checkbox" class="w-5 h-5 accent-gray-200 border-gray-300 rounded">
+            </div>
+
+            <button class="w-full bg-[#E30613] text-white font-bold py-3 rounded-lg mt-8 shadow-md active:scale-95 transition">
+                اشتر الآن (76 ر.س.)
+            </button>
+        </div>
+
+        <div class="mt-12 grid grid-cols-4 gap-3">
+            <div class="bg-white p-2 rounded border flex justify-center"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Apple_Pay_logo.svg" class="h-4"></div>
+            <div class="bg-white p-2 rounded border flex justify-center"><img src="https://img.icons8.com/color/48/amex.png" class="h-4"></div>
+            <div class="bg-white p-2 rounded border flex justify-center"><img src="https://img.icons8.com/color/48/visa.png" class="h-4"></div>
+            <div class="bg-white p-2 rounded border flex justify-center"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mada_Logo.svg" class="h-4"></div>
+            
+            <div class="bg-white p-2 rounded border flex justify-center text-[10px] font-bold text-purple-800">qitaf</div>
+            <div class="bg-white p-2 rounded border flex justify-center text-[10px] font-bold text-blue-900 italic">mokafaa</div>
+            <div class="bg-white p-2 rounded border flex justify-center"><span class="text-[8px] font-bold text-gray-400">akthr</span></div>
+            <div class="bg-white p-2 rounded border flex justify-center text-[8px] font-bold text-red-700">دفع مسبق</div>
+
+            <div class="col-start-4 bg-[#00FFCC] p-2 rounded border flex justify-center"><span class="text-[10px] font-black italic">tabby</span></div>
+            <div class="col-start-1 bg-white p-2 rounded border flex justify-center"><span class="text-[10px] font-bold text-orange-400">tamara</span></div>
+        </div>
+    </main>
+
+    <div class="p-6 mt-auto">
+        <i class="fa-solid fa-fingerprint text-2xl text-gray-300"></i>
+    </div>
+
+</body>
+</html>
