@@ -3,131 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الدفع - جرير</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>تطبيق جرير المتكامل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --jarir-red: #E30613;
-            --input-bg: #F0F2F5;
-        }
-        body { font-family: 'Cairo', sans-serif; background-color: #F8F9FA; }
+        :root { --jarir-red: #E30613; --jarir-navy: #2D3E50; --bg-gray: #F0F2F5; }
+        body { font-family: 'Cairo', sans-serif; overflow-x: hidden; }
+        .page { display: none; min-height: 100vh; flex-direction: column; }
+        .page.active { display: flex; }
         
-        .card-container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .form-input {
-            width: 100%;
-            background-color: var(--input-bg);
-            border: none;
-            border-radius: 6px;
-            padding: 12px;
-            font-size: 13px;
-            text-align: right;
-            outline: none;
-        }
-
-        .payment-method {
-            border: 1px solid #E5E7EB;
-            border-radius: 10px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .radio-blue {
-            width: 20px;
-            height: 20px;
-            border: 5px solid #0055FF;
-            border-radius: 50%;
-        }
+        /* Product Page Styles */
+        .product-gradient { background: radial-gradient(circle, #ffffff 0%, #fdf2f2 100%); }
+        .phone-main-img { width: 260px; height: auto; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.1)); }
+        
+        /* Form Styles */
+        .form-input { width: 100%; background: var(--bg-gray); border: 1px solid #d1d5db; border-radius: 8px; padding: 12px; outline: none; text-align: right; }
+        
+        /* Payment Styles */
+        .card-box { background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .accordion-content.active { max-height: 200px; }
     </style>
 </head>
-<body class="max-w-md mx-auto min-h-screen flex flex-col bg-[#F3F5F7]">
+<body class="max-w-md mx-auto shadow-2xl bg-gray-50">
 
-    <header class="bg-white p-4 flex justify-between items-center border-b">
-        <i class="fa-solid fa-chevron-left text-gray-400"></i>
-        <span class="font-bold text-gray-700">العودة</span>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Jarir_Bookstore_Logo.svg" class="h-6" alt="Jarir">
-    </header>
+    <section id="page-product" class="page active bg-white">
+        <header class="p-4 border-b sticky top-0 bg-white z-50 flex justify-between items-center">
+            <i class="fa-solid fa-bars text-xl"></i>
+            <span class="text-2xl font-black text-[#E30613]">JARIR</span>
+            <div class="relative"><i class="fa-solid fa-cart-shopping text-xl"></i></div>
+        </header>
 
-    <main class="p-4">
-        <div class="flex items-center gap-2 mb-6 justify-end">
-            <span class="font-bold text-gray-800 text-lg">الدفع</span>
-            <div class="bg-slate-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">2</div>
+        <div class="product-gradient py-6 flex justify-center">
+            <img src="https://i.ibb.co/HpTBrKJN/CFE81-C5-E-E4-C2-446-F-99-FF-DECC85-EC63-D0.png" class="phone-main-img">
         </div>
 
-        <div class="card-container p-6">
-            <div class="payment-method mb-6">
-                <div class="radio-blue"></div>
-                <div class="flex flex-col items-end gap-1">
-                    <span class="text-sm font-bold text-gray-700">الدفع بالبطاقة الائتمانية</span>
+        <main class="p-5">
+            <h1 class="text-xl font-extrabold mb-4">ابل آيفون 17 برو ماكس</h1>
+            <div class="flex gap-2 mb-6 overflow-x-auto pb-2">
+                <span class="bg-gray-100 px-3 py-1 rounded-full text-xs font-bold border">256 جيجابايت</span>
+                <span class="bg-gray-100 px-3 py-1 rounded-full text-xs font-bold border">برتقالي كوزمك</span>
+            </div>
+            <div class="mb-6 bg-red-50 p-4 rounded-2xl flex justify-between items-center">
+                <div class="text-[#E30613] text-3xl font-black">5,699 <span class="text-sm">ر.س</span></div>
+                <span class="bg-red-600 text-white text-[10px] px-2 py-0.5 rounded">وفر 500</span>
+            </div>
+            <button onclick="showPage('page-register')" class="w-full bg-[#E30613] text-white font-bold py-4 rounded-xl shadow-lg">أضف إلى السلة</button>
+        </main>
+    </section>
+
+    <section id="page-register" class="page bg-white">
+        <header class="p-4 border-b flex justify-between items-center">
+            <button onclick="showPage('page-product')"><i class="fa-solid fa-chevron-right text-xl"></i></button>
+            <span class="font-bold">إنشاء حساب</span>
+            <div class="w-6"></div>
+        </header>
+        
+        <div class="p-6 space-y-5">
+            <div>
+                <label class="text-xs text-gray-400 block mb-1">اسم الدولة</label>
+                <div class="form-input bg-gray-100 flex justify-between items-center">
+                    <i class="fa-solid fa-caret-down text-gray-400"></i>
+                    <span class="font-bold">المملكة العربية السعودية</span>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <input type="tel" placeholder="رقم الهاتف" class="form-input w-2/3">
+                <div class="form-input w-1/3 flex items-center justify-between">
+                    <i class="fa-solid fa-caret-down text-[10px]"></i>
+                    <span class="font-bold">+966</span>
+                </div>
+            </div>
+            <input type="text" placeholder="الاسم الأول" class="form-input">
+            <input type="email" placeholder="البريد الإلكتروني" class="form-input">
+            <button onclick="showPage('page-payment')" class="w-full bg-[#E30613] text-white font-bold py-4 rounded-xl mt-6">استمرار</button>
+        </div>
+    </section>
+
+    <section id="page-payment" class="page">
+        <header class="p-4 bg-white border-b flex justify-between items-center">
+            <button onclick="showPage('page-register')"><i class="fa-solid fa-chevron-right text-xl"></i></button>
+            <span class="font-bold">الدفع</span>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Jarir_Bookstore_Logo.svg" class="h-5">
+        </header>
+
+        <main class="p-4">
+            <div class="card-box p-6 mb-6">
+                <div class="flex justify-between items-center border p-3 rounded-lg mb-4">
+                    <div class="w-5 h-5 border-4 border-blue-600 rounded-full"></div>
+                    <span class="text-sm font-bold">الدفع بالبطاقة الائتمانية</span>
+                </div>
+                <div class="space-y-3">
+                    <input type="text" placeholder="رقم البطاقة" class="form-input bg-gray-50 border-none">
                     <div class="flex gap-2">
-                        <img src="https://img.icons8.com/color/48/visa.png" class="h-5">
-                        <img src="https://img.icons8.com/color/48/mastercard.png" class="h-5">
-                        <img src="https://img.icons8.com/color/48/amex.png" class="h-5">
+                        <input type="text" placeholder="رمز التحقق" class="form-input bg-gray-50 border-none w-1/3">
+                        <input type="text" placeholder="تاريخ الانتهاء" class="form-input bg-gray-50 border-none w-2/3">
                     </div>
                 </div>
+                <button onclick="alert('شكراً لك! تم تنفيذ طلبك بنجاح.')" class="w-full bg-[#E30613] text-white font-bold py-4 rounded-xl mt-8">اشتر الآن (5,699 ر.س.)</button>
             </div>
+        </main>
 
-            <div class="space-y-3">
-                <div class="flex gap-2">
-                    <div class="w-1/3">
-                        <label class="block text-[10px] text-gray-400 mb-1">تاريخ الانتهاء</label>
-                        <input type="text" placeholder="تاريخ الانتهاء" class="form-input">
-                    </div>
-                    <div class="w-2/3">
-                        <label class="block text-[10px] text-gray-400 mb-1">رقم البطاقة</label>
-                        <input type="text" placeholder="رقم البطاقة" class="form-input">
-                    </div>
-                </div>
-
-                <div class="flex gap-2">
-                    <div class="w-1/3">
-                        <label class="block text-[10px] text-gray-400 mb-1 text-center">(CVV) رمز التحقق</label>
-                        <input type="text" placeholder="رمز التحقق" class="form-input">
-                    </div>
-                    <div class="w-2/3">
-                        <label class="block text-[10px] text-gray-400 mb-1">اسم حامل البطاقة</label>
-                        <input type="text" placeholder="اسم حامل البطاقة" class="form-input">
-                    </div>
-                </div>
+        <footer class="mt-auto bg-[#2D3E50] text-white p-6 rounded-t-3xl">
+            <div onclick="toggleAcc()" class="flex justify-between items-center cursor-pointer">
+                <span class="font-bold">رعاية العميل</span>
+                <i class="fa-solid fa-chevron-down"></i>
             </div>
+            <div id="footer-acc" class="accordion-content text-gray-400 text-sm mt-2">نحن هنا لخدمتكم على مدار الساعة.</div>
+            <div class="mt-8 text-center text-[10px] text-gray-500 border-t border-gray-700 pt-4">جميع الحقوق محفوظة لمكتبة جرير © 2026</div>
+        </footer>
+    </section>
 
-            <div class="flex items-center justify-end gap-3 mt-6">
-                <span class="text-xs text-gray-500 font-bold">احفظ بيانات البطاقة للاستخدام لاحقاً</span>
-                <input type="checkbox" class="w-5 h-5 accent-gray-200 border-gray-300 rounded">
-            </div>
+    <script>
+        // وظيفة التنقل بين الصفحات
+        function showPage(pageId) {
+            // إخفاء كل الصفحات
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // إظهار الصفحة المطلوبة
+            document.getElementById(pageId).classList.add('active');
+            // العودة لأعلى الصفحة عند الانتقال
+            window.scrollTo(0, 0);
+        }
 
-            <button class="w-full bg-[#E30613] text-white font-bold py-3 rounded-lg mt-8 shadow-md active:scale-95 transition">
-                اشتر الآن (76 ر.س.)
-            </button>
-        </div>
-
-        <div class="mt-12 grid grid-cols-4 gap-3">
-            <div class="bg-white p-2 rounded border flex justify-center"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Apple_Pay_logo.svg" class="h-4"></div>
-            <div class="bg-white p-2 rounded border flex justify-center"><img src="https://img.icons8.com/color/48/amex.png" class="h-4"></div>
-            <div class="bg-white p-2 rounded border flex justify-center"><img src="https://img.icons8.com/color/48/visa.png" class="h-4"></div>
-            <div class="bg-white p-2 rounded border flex justify-center"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mada_Logo.svg" class="h-4"></div>
-            
-            <div class="bg-white p-2 rounded border flex justify-center text-[10px] font-bold text-purple-800">qitaf</div>
-            <div class="bg-white p-2 rounded border flex justify-center text-[10px] font-bold text-blue-900 italic">mokafaa</div>
-            <div class="bg-white p-2 rounded border flex justify-center"><span class="text-[8px] font-bold text-gray-400">akthr</span></div>
-            <div class="bg-white p-2 rounded border flex justify-center text-[8px] font-bold text-red-700">دفع مسبق</div>
-
-            <div class="col-start-4 bg-[#00FFCC] p-2 rounded border flex justify-center"><span class="text-[10px] font-black italic">tabby</span></div>
-            <div class="col-start-1 bg-white p-2 rounded border flex justify-center"><span class="text-[10px] font-bold text-orange-400">tamara</span></div>
-        </div>
-    </main>
-
-    <div class="p-6 mt-auto">
-        <i class="fa-solid fa-fingerprint text-2xl text-gray-300"></i>
-    </div>
-
+        // وظيفة الفوتر المنسدل
+        function toggleAcc() {
+            document.getElementById('footer-acc').classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
